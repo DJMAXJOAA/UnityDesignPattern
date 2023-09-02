@@ -1,19 +1,24 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using Bike;
 
 public class GameManager : Singleton<GameManager>
 {
     private DateTime _sessionStartTime;
     private DateTime _sessionEndTime;
+    private BikeController bikeController;
 
     private void Start()
     {
         // 프로그램 시간을 출력해준다
         _sessionStartTime = DateTime.Now;
         Debug.Log("Game session start @ : " + DateTime.Now);
+
+        bikeController = FindObjectOfType<BikeController>();
+        if(bikeController)
+        {
+            Debug.Log("BikeController와 연결 완료 : " + bikeController);
+        }
     }
 
     private void OnApplicationQuit()
